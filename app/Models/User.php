@@ -27,14 +27,14 @@ class User extends Model
      *
      * @var array
      */
-    protected $fillable = ['email', 'password', 'is_verify'];
+    protected $fillable = ['email', 'password', 'verified', 'verification_token'];
 
     /**
      * The attributes that should be hidden for arrays.
      *
      * @var array
      */
-    protected $hidden = ['password'];
+    protected $hidden = ['password', 'verification_token'];
 
     /**
      * @return bool

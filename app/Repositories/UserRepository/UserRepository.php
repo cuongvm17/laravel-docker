@@ -2,10 +2,11 @@
 
 namespace App\Repositories\UserRepository;
 
+use App\Http\Requests\SignupRequest;
 use App\Models\User;
-use App\Repositories\AbstractBaseRepository;
+use App\Repositories\AbstractRepository;
 
-class UserRepository extends AbstractBaseRepository implements UserRepositoryInterface
+class UserRepository extends AbstractRepository implements UserRepositoryInterface
 {
     /**
      * @return string
@@ -13,5 +14,36 @@ class UserRepository extends AbstractBaseRepository implements UserRepositoryInt
     public function getModel()
     {
         return User::class;
+    }
+
+    /**
+     * @param SignupRequest $request
+     * @return \Illuminate\Database\Eloquent\Model|mixed
+     */
+    public function doSave($request)
+    {
+        $data = $request->all();
+        $data['password'] = bcrypt($request->password);
+        $data['verified'] = User::UNVERIFIED_USER;
+        $data['verification_token'] = User::generateVerificationCode();
+
+        return $this->create($data);
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Collection|\Illuminate\Database\Eloquent\Model[]|mixed
+     */
+    public function getList()
+    {
+        return $this->getAll();
+    }
+
+    /**
+     * @param $id
+     * @return mixed
+     */
+    public function getById($id)
+    {
+        return $this->find($id);
     }
 }

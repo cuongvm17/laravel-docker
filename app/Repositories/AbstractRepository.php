@@ -2,7 +2,7 @@
 
 namespace App\Repositories;
 
-abstract class AbstractBaseRepository implements BaseRepositoryInterface
+abstract class AbstractRepository implements AbstractRepositoryInterface
 {
     /**
      * @var \Illuminate\Database\Eloquent\Model
@@ -10,7 +10,7 @@ abstract class AbstractBaseRepository implements BaseRepositoryInterface
     protected $_model;
 
     /**
-     * AbstractBaseRepository constructor.
+     * AbstractRepository constructor.
      */
     public function __construct()
     {

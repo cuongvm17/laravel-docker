@@ -3,12 +3,10 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\ApiController;
-use App\Http\Requests\LoginRequest;
-use App\Http\Requests\SignupRequest;
 use App\Repositories\UserRepository\UserRepositoryInterface;
 use App\Traits\ApiResponser;
 
-class AuthController extends ApiController
+class UserController extends ApiController
 {
     use ApiResponser;
 
@@ -27,17 +25,28 @@ class AuthController extends ApiController
         $this->userRepository = $userRepository;
     }
 
-    public function login(LoginRequest $request)
+    /**
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function index()
     {
+        if ($result = $this->userRepository->getList()) {
+            return $this->showAll($result);
+        }
 
+        return $this->showMessage('Cannot found any user!');
     }
 
     /**
-     * @param SignupRequest $request
+     * @param $id
      * @return \Illuminate\Http\JsonResponse
      */
-    public function signup(SignupRequest $request)
+    public function show($id)
     {
-        return $this->showOne($this->userRepository->doSave($request));
+        if ($result = $this->userRepository->getById($id)) {
+            return $this->showOne($result);
+        }
+
+        return $this->showMessage('User not found!');
     }
 }

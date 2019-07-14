@@ -20,7 +20,9 @@ class CreateUsersTable extends Migration
             $table->string('password');
             $table->string('verified')->default(User::UNVERIFIED_USER);
             $table->string('verification_token')->nullable();
-            $table->timestamps();
+
+            $table->timestamp(User::CREATED_AT)->useCurrent();
+            $table->timestamp(User::UPDATED_AT)->useCurrent();
             $table->index('email');
         });
     }

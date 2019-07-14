@@ -38,7 +38,7 @@ trait ApiResponser
             return $this->successResponse(['data' => $collection], $code);
         }
 
-        return $this->successResponse($collection, $code);
+        return $this->successResponse(['data' => $collection], $code);
     }
 
     /**
@@ -48,7 +48,7 @@ trait ApiResponser
      */
     protected function showOne(Model $instance, $code = 200)
     {
-        return $this->successResponse($instance, $code);
+        return $this->successResponse(['data' => $instance], $code);
     }
 
     /**

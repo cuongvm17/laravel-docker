@@ -2,7 +2,9 @@
 
 namespace App\Repositories\ProfileRepository;
 
-interface ProfileRepositoryInterface
+use App\Repositories\BaseRepositoryInterface;
+
+interface ProfileRepositoryInterface extends BaseRepositoryInterface
 {
 
 }
