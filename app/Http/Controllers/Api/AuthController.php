@@ -6,11 +6,9 @@ use App\Http\Controllers\ApiController;
 use App\Http\Requests\LoginRequest;
 use App\Http\Requests\SignupRequest;
 use App\Services\Signup\SignupRequestService;
-use App\Traits\ApiResponser;
 
 class AuthController extends ApiController
 {
-    use ApiResponser;
     /**
      * @var SignupRequestService
      */

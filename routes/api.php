@@ -5,4 +5,5 @@ Route::group(['prefix' => 'v1'], function () {
     Route::post('signup', 'AuthController@signup');
 
     Route::resource('user', 'UserController', ['only' => ['index', 'show']]);
+    Route::resource('profile', 'ProfileController', ['only' => ['index', 'create', 'show']]);
 });

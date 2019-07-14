@@ -42,11 +42,11 @@ trait ApiResponser
     }
 
     /**
-     * @param Model $instance
+     * @param Model|null $instance
      * @param int $code
      * @return \Illuminate\Http\JsonResponse
      */
-    protected function showOne(Model $instance, $code = 200)
+    protected function showOne(Model $instance = null, $code = 200)
     {
         return $this->successResponse(['data' => $instance], $code);
     }

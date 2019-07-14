@@ -20,13 +20,20 @@ class ProfileRepository extends AbstractRepository implements ProfileRepositoryI
         // TODO: Implement doSave() method.
     }
 
+    /**
+     * @return \Illuminate\Database\Eloquent\Collection|\Illuminate\Database\Eloquent\Model[]|mixed
+     */
     public function getList()
     {
-        // TODO: Implement getList() method.
+        return $this->getAll();
     }
 
+    /**
+     * @param $id
+     * @return mixed
+     */
     public function getById($id)
     {
-        // TODO: Implement getById() method.
+        return $this->find($id);
     }
 }
