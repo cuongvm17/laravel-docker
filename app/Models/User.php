@@ -41,7 +41,7 @@ class User extends Model
      */
     public function isVerified()
     {
-        return $this->is_verify == User::VERIFIED_USER;
+        return $this->verified == User::VERIFIED_USER;
     }
 
     /**

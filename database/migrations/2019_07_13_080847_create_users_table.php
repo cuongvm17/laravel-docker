@@ -1,14 +1,12 @@
 <?php
 
+use App\Models\User;
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
 class CreateUsersTable extends Migration
 {
-    const VERIFIED = 1;
-    const UNVERIFIED = 0;
-
     /**
      * Run the migrations.
      *
@@ -20,7 +18,8 @@ class CreateUsersTable extends Migration
             $table->bigIncrements('id');
             $table->string('email')->unique();
             $table->string('password');
-            $table->enum('is_verify', [self::UNVERIFIED, self::VERIFIED])->default(self::UNVERIFIED);
+            $table->string('verified')->default(User::UNVERIFIED_USER);
+            $table->string('verification_token')->nullable();
             $table->timestamps();
             $table->index('email');
         });
