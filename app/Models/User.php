@@ -2,11 +2,15 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Model;
+use Illuminate\Notifications\Notifiable;
 use Illuminate\Support\Str;
+use Laravel\Passport\HasApiTokens;
+use Illuminate\Foundation\Auth\User as Authenticatable;
 
-class User extends Model
+class User extends Authenticatable
 {
+    use HasApiTokens, Notifiable;
+
     const CREATED_AT = 'creation_date';
 
     const UPDATED_AT = 'last_update';
@@ -34,7 +38,7 @@ class User extends Model
      *
      * @var array
      */
-    protected $hidden = ['password', 'verification_token'];
+    protected $hidden = ['password'];
 
     /**
      * @return bool

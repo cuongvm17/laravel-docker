@@ -23,7 +23,7 @@ class CreateUsersTable extends Migration
 
             $table->timestamp(User::CREATED_AT)->useCurrent();
             $table->timestamp(User::UPDATED_AT)->useCurrent();
-            $table->index('email');
+            $table->index(['email', 'verification_token']);
         });
     }
 

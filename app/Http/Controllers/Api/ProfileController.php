@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\ApiController;
-use App\Http\Requests\CreateProfileRequest;
+use App\Http\Requests\StoreProfileRequest;
 use App\Repositories\ProfileRepository\ProfileRepositoryInterface;
 
 class ProfileController extends ApiController
@@ -31,9 +31,17 @@ class ProfileController extends ApiController
         return $this->showAll($this->profileRepository->getList());
     }
 
-    public function create(CreateProfileRequest $request)
+    /**
+     * @param StoreProfileRequest $request
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function store(StoreProfileRequest $request)
     {
-        return true;
+        if (!$profile = $this->profileRepository->doSave($request)) {
+            return $this->showMessage('User already has profile!');
+        }
+
+        return $this->showOne($profile);
     }
 
     /**

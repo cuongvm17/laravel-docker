@@ -46,4 +46,23 @@ class UserRepository extends AbstractRepository implements UserRepositoryInterfa
     {
         return $this->find($id);
     }
+
+    /**
+     * @param $token
+     * @return mixed
+     */
+    public function findVerifiedToken($token)
+    {
+        return $this->getModel()->where('verification_token', $token)->firstOrFail();
+    }
+
+    /**
+     * @param $id
+     * @param array $data
+     * @return bool|mixed|void
+     */
+    public function update($id,array $data)
+    {
+        $this->update($id, $data);
+    }
 }

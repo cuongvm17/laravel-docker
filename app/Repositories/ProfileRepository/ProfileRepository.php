@@ -15,9 +15,20 @@ class ProfileRepository extends AbstractRepository implements ProfileRepositoryI
         return Profile::class;
     }
 
+    /**
+     * @param $request
+     * @return bool|\Illuminate\Database\Eloquent\Model|mixed
+     */
     public function doSave($request)
     {
-        // TODO: Implement doSave() method.
+        $user = $request->user();
+        if (!is_null($user->profile)) {
+            return false;
+        }
+        $data = $request->all();
+        $data['user_id'] = $user->id;
+
+        return $this->create($data);
     }
 
     /**

@@ -3,8 +3,9 @@
 namespace App\Services\Signup;
 
 use App\Http\Requests\SignupRequest;
+use App\Services\BaseServiceInterface;
 
-interface SignupRequestServiceInterface
+interface SignupRequestServiceInterface extends BaseServiceInterface
 {
     /**
      * @param SignupRequest $request
