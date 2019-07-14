@@ -6,5 +6,5 @@ use App\Http\Controllers\ApiController;
 
 class ProfileController extends ApiController
 {
-    
+
 }

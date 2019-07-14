@@ -6,6 +6,8 @@ use App\Repositories\ProfileRepository\ProfileRepository;
 use App\Repositories\ProfileRepository\ProfileRepositoryInterface;
 use App\Repositories\UserRepository\UserRepository;
 use App\Repositories\UserRepository\UserRepositoryInterface;
+use App\Services\Signup\SignupRequestService;
+use App\Services\Signup\SignupRequestServiceInterface;
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\ServiceProvider;
 
@@ -20,6 +22,8 @@ class AppServiceProvider extends ServiceProvider
     {
         $this->app->bind(UserRepositoryInterface::class, UserRepository::class);
         $this->app->bind(ProfileRepositoryInterface::class, ProfileRepository::class);
+
+        $this->app->bind(SignupRequestServiceInterface::class, SignupRequestService::class);
     }
 
     /**
