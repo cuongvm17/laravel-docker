@@ -1,0 +1,483 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <title>API Reference</title>
+
+    <link rel="stylesheet" href="css/style.css" />
+    <script src="js/all.js"></script>
+
+
+          <script>
+        $(function() {
+            setupLanguages(["bash","javascript"]);
+        });
+      </script>
+      </head>
+
+  <body class="">
+    <a href="#" id="nav-button">
+      <span>
+        NAV
+        <img src="images/navbar.png" />
+      </span>
+    </a>
+    <div class="tocify-wrapper">
+        <img src="images/logo.png" />
+                    <div class="lang-selector">
+                                  <a href="#" data-language-name="bash">bash</a>
+                                  <a href="#" data-language-name="javascript">javascript</a>
+                            </div>
+                            <div class="search">
+              <input type="text" class="search" id="input-search" placeholder="Search">
+            </div>
+            <ul class="search-results"></ul>
+              <div id="toc">
+      </div>
+                    <ul class="toc-footer">
+                                  <li><a href='http://github.com/mpociot/documentarian'>Documentation Powered by Documentarian</a></li>
+                            </ul>
+            </div>
+    <div class="page-wrapper">
+      <div class="dark-box"></div>
+      <div class="content">
+          <!-- START_INFO -->
+<h1>Info</h1>
+<p>Welcome to the generated API reference.
+<a href="http://localhost/docs/collection.json">Get Postman Collection</a></p>
+<!-- END_INFO -->
+<h2>Oauth2 server</h2>
+<p>Documentation: <a href="https://oauth.net/2/">https://oauth.net/2/</a></p>
+<p>Get client credentials access token:</p>
+<p>POST: <a href="http://localhost/oauth/token">http://localhost/oauth/token</a></p>
+<p>Body: {</p>
+<p>client_id: 12</p>
+<p>client_secret: jYwXAmnQVjEQZ0BOsb69bZIEj2XaWGOOTlSTNcOW</p>
+<p>grant_type: client_credentials</p>
+<p>}</p>
+<h1>Account resource</h1>
+<p>Allow client can get list or specific account information.</p>
+<p>Class UserResourceController</p>
+<!-- START_1aff981da377ba9a1bbc56ff8efaec0d -->
+<h2>Get list accounts</h2>
+<p><br><small style="padding: 1px 9px 2px;font-weight: bold;white-space: nowrap;color: #ffffff;-webkit-border-radius: 9px;-moz-border-radius: 9px;border-radius: 9px;background-color: #3a87ad;">Requires authentication</small></p>
+<blockquote>
+<p>Example request:</p>
+</blockquote>
+<pre><code class="language-bash">curl -X GET -G "/api/v1/users" \
+    -H "Authorization: Bearer {token}"</code></pre>
+<pre><code class="language-javascript">const url = new URL("/api/v1/users");
+
+let headers = {
+    "Authorization": "Bearer {token}",
+    "Accept": "application/json",
+    "Content-Type": "application/json",
+}
+
+fetch(url, {
+    method: "GET",
+    headers: headers,
+})
+    .then(response =&gt; response.json())
+    .then(json =&gt; console.log(json));</code></pre>
+<blockquote>
+<p>Example response (200):</p>
+</blockquote>
+<pre><code class="language-json">{
+    "data": [
+        {
+            "id": 19,
+            "email": "jacky@gmail.com",
+            "verified": "0",
+            "verification_token": "ryB38UaLBVrRYYBvk9uD63NOiFSTwzCraPr3dEhO",
+            "creation_date": "2019-07-14 14:41:36",
+            "last_update": "2019-07-14 14:41:36"
+        },
+        {
+            "id": 20,
+            "email": "jacky+1@gmail.com",
+            "verified": "0",
+            "verification_token": "lrRQnIG1f8HEPzwtoVmBtGRi3sajHQZQimxv4BJp",
+            "creation_date": "2019-07-14 16:04:47",
+            "last_update": "2019-07-14 16:04:47"
+        },
+        {
+            "id": 21,
+            "email": "jacky+11@gmail.com",
+            "verified": "0",
+            "verification_token": "5ZIUdiY1tDizRaTARKV0V3lJaH3biTimqdYYWO8j",
+            "creation_date": "2019-07-15 15:42:18",
+            "last_update": "2019-07-15 15:42:18"
+        },
+        {
+            "id": 22,
+            "email": "jacky+22@gmail.com",
+            "verified": "1",
+            "verification_token": null,
+            "creation_date": "2019-07-15 17:20:48",
+            "last_update": "2019-07-15 17:33:09"
+        }
+    ]
+}</code></pre>
+<h3>HTTP Request</h3>
+<p><code>GET api/v1/users</code></p>
+<!-- END_1aff981da377ba9a1bbc56ff8efaec0d -->
+<!-- START_cedc85e856362e0e3b46f5dcd9f8f5d0 -->
+<h2>Get specific user</h2>
+<p><br><small style="padding: 1px 9px 2px;font-weight: bold;white-space: nowrap;color: #ffffff;-webkit-border-radius: 9px;-moz-border-radius: 9px;border-radius: 9px;background-color: #3a87ad;">Requires authentication</small></p>
+<blockquote>
+<p>Example request:</p>
+</blockquote>
+<pre><code class="language-bash">curl -X GET -G "/api/v1/users/1" \
+    -H "Authorization: Bearer {token}"</code></pre>
+<pre><code class="language-javascript">const url = new URL("/api/v1/users/1");
+
+let headers = {
+    "Authorization": "Bearer {token}",
+    "Accept": "application/json",
+    "Content-Type": "application/json",
+}
+
+fetch(url, {
+    method: "GET",
+    headers: headers,
+})
+    .then(response =&gt; response.json())
+    .then(json =&gt; console.log(json));</code></pre>
+<blockquote>
+<p>Example response (200):</p>
+</blockquote>
+<pre><code class="language-json">{
+    "data": "Access denied!"
+}</code></pre>
+<h3>HTTP Request</h3>
+<p><code>GET api/v1/users/{user}</code></p>
+<!-- END_cedc85e856362e0e3b46f5dcd9f8f5d0 -->
+<h1>User authentication</h1>
+<p>Class AuthController available for user signup, login and verify request</p>
+<!-- START_8c0e48cd8efa861b308fc45872ff0837 -->
+<h2>User login</h2>
+<blockquote>
+<p>Example request:</p>
+</blockquote>
+<pre><code class="language-bash">curl -X POST "/api/v1/login" \
+    -H "Authorization: Bearer {token}" \
+    -H "Content-Type: application/json" \
+    -d '{"email":"quis","password":"consequatur"}'
+</code></pre>
+<pre><code class="language-javascript">const url = new URL("/api/v1/login");
+
+let headers = {
+    "Authorization": "Bearer {token}",
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+}
+
+let body = {
+    "email": "quis",
+    "password": "consequatur"
+}
+
+fetch(url, {
+    method: "POST",
+    headers: headers,
+    body: body
+})
+    .then(response =&gt; response.json())
+    .then(json =&gt; console.log(json));</code></pre>
+<blockquote>
+<p>Example response (200):</p>
+</blockquote>
+<pre><code class="language-json">{
+    "data": {
+        "access_token": "uO3Qa_G76J6ARt1zUjXVxquyZ2amEp2fp3Owh5b3lWumGiT6qk",
+        "token_type": "Bearer",
+        "expires_at": "2020-07-15 17:09:43"
+    }
+}</code></pre>
+<h3>HTTP Request</h3>
+<p><code>POST api/v1/login</code></p>
+<h4>Body Parameters</h4>
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Status</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>email</td>
+<td>string</td>
+<td>required</td>
+<td>The email of user registered.</td>
+</tr>
+<tr>
+<td>password</td>
+<td>string</td>
+<td>required</td>
+<td>The password of user.</td>
+</tr>
+</tbody>
+</table>
+<!-- END_8c0e48cd8efa861b308fc45872ff0837 -->
+<!-- START_4cf43ae7106797d008aa14ddcc36599a -->
+<h2>User signup</h2>
+<p><br><small style="padding: 1px 9px 2px;font-weight: bold;white-space: nowrap;color: #ffffff;-webkit-border-radius: 9px;-moz-border-radius: 9px;border-radius: 9px;background-color: #3a87ad;">Requires authentication</small></p>
+<blockquote>
+<p>Example request:</p>
+</blockquote>
+<pre><code class="language-bash">curl -X POST "/api/v1/signup" \
+    -H "Authorization: Bearer {token}" \
+    -H "Content-Type: application/json" \
+    -d '{"email":"suscipit","password":"rem","password_confirmation":"illo"}'
+</code></pre>
+<pre><code class="language-javascript">const url = new URL("/api/v1/signup");
+
+let headers = {
+    "Authorization": "Bearer {token}",
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+}
+
+let body = {
+    "email": "suscipit",
+    "password": "rem",
+    "password_confirmation": "illo"
+}
+
+fetch(url, {
+    method: "POST",
+    headers: headers,
+    body: body
+})
+    .then(response =&gt; response.json())
+    .then(json =&gt; console.log(json));</code></pre>
+<blockquote>
+<p>Example response (200):</p>
+</blockquote>
+<pre><code class="language-json">{
+    "data": {
+        "email": "jacky@gmail.com",
+        "verified": "0",
+        "verification_token": "5ZIUdiY1tDizRaTARKV0V3lJaH3biTimqdYYWO8j",
+        "last_update": "2019-07-15 15:42:18",
+        "creation_date": "2019-07-15 15:42:18",
+        "id": 1
+    }
+}</code></pre>
+<h3>HTTP Request</h3>
+<p><code>POST api/v1/signup</code></p>
+<h4>Body Parameters</h4>
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Status</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>email</td>
+<td>string</td>
+<td>required</td>
+<td>The email of user.</td>
+</tr>
+<tr>
+<td>password</td>
+<td>string</td>
+<td>required</td>
+<td>The password of user.</td>
+</tr>
+<tr>
+<td>password_confirmation</td>
+<td>string</td>
+<td>required</td>
+<td>The password confirmation.</td>
+</tr>
+</tbody>
+</table>
+<!-- END_4cf43ae7106797d008aa14ddcc36599a -->
+<!-- START_81657d16c1a8c01d49a35b993e210e0f -->
+<h2>Verify user account</h2>
+<blockquote>
+<p>Example request:</p>
+</blockquote>
+<pre><code class="language-bash">curl -X GET -G "/api/v1/verify/1" \
+    -H "Authorization: Bearer {token}"</code></pre>
+<pre><code class="language-javascript">const url = new URL("/api/v1/verify/1");
+
+let headers = {
+    "Authorization": "Bearer {token}",
+    "Accept": "application/json",
+    "Content-Type": "application/json",
+}
+
+fetch(url, {
+    method: "GET",
+    headers: headers,
+})
+    .then(response =&gt; response.json())
+    .then(json =&gt; console.log(json));</code></pre>
+<blockquote>
+<p>Example response (200):</p>
+</blockquote>
+<pre><code class="language-json">{}</code></pre>
+<h3>HTTP Request</h3>
+<p><code>GET api/v1/verify/{token}</code></p>
+<!-- END_81657d16c1a8c01d49a35b993e210e0f -->
+<h1>User profile</h1>
+<p>Class ProfileController</p>
+<!-- START_cd0df6f69b0247f994a6ccfe27afb1a7 -->
+<h2>User show own profile</h2>
+<p><br><small style="padding: 1px 9px 2px;font-weight: bold;white-space: nowrap;color: #ffffff;-webkit-border-radius: 9px;-moz-border-radius: 9px;border-radius: 9px;background-color: #3a87ad;">Requires authentication</small></p>
+<blockquote>
+<p>Example request:</p>
+</blockquote>
+<pre><code class="language-bash">curl -X GET -G "/api/v1/profile" \
+    -H "Authorization: Bearer {token}"</code></pre>
+<pre><code class="language-javascript">const url = new URL("/api/v1/profile");
+
+let headers = {
+    "Authorization": "Bearer {token}",
+    "Accept": "application/json",
+    "Content-Type": "application/json",
+}
+
+fetch(url, {
+    method: "GET",
+    headers: headers,
+})
+    .then(response =&gt; response.json())
+    .then(json =&gt; console.log(json));</code></pre>
+<blockquote>
+<p>Example response (200):</p>
+</blockquote>
+<pre><code class="language-json">{
+    "data": {
+        "id": 2,
+        "user_id": 21,
+        "first_name": "jacky",
+        "last_name": "vu",
+        "gender": "male",
+        "address": "Vietnam",
+        "phone": "1234567",
+        "creation_date": "2019-07-15 15:45:27",
+        "last_update": "2019-07-15 15:45:27"
+    }
+}</code></pre>
+<h3>HTTP Request</h3>
+<p><code>GET api/v1/profile</code></p>
+<!-- END_cd0df6f69b0247f994a6ccfe27afb1a7 -->
+<!-- START_718ca1cf95e5e36ed6d871a10bf16ecd -->
+<h2>Store user profile</h2>
+<p><br><small style="padding: 1px 9px 2px;font-weight: bold;white-space: nowrap;color: #ffffff;-webkit-border-radius: 9px;-moz-border-radius: 9px;border-radius: 9px;background-color: #3a87ad;">Requires authentication</small></p>
+<blockquote>
+<p>Example request:</p>
+</blockquote>
+<pre><code class="language-bash">curl -X POST "/api/v1/profile" \
+    -H "Authorization: Bearer {token}" \
+    -H "Content-Type: application/json" \
+    -d '{"first_name":"omnis","last_name":"cumque","gender":"molestiae","address":"aliquam","phone":"officia"}'
+</code></pre>
+<pre><code class="language-javascript">const url = new URL("/api/v1/profile");
+
+let headers = {
+    "Authorization": "Bearer {token}",
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+}
+
+let body = {
+    "first_name": "omnis",
+    "last_name": "cumque",
+    "gender": "molestiae",
+    "address": "aliquam",
+    "phone": "officia"
+}
+
+fetch(url, {
+    method: "POST",
+    headers: headers,
+    body: body
+})
+    .then(response =&gt; response.json())
+    .then(json =&gt; console.log(json));</code></pre>
+<blockquote>
+<p>Example response (200):</p>
+</blockquote>
+<pre><code class="language-json">{
+    "data": {
+        "id": 2,
+        "user_id": 21,
+        "first_name": "jacky",
+        "last_name": "vu",
+        "gender": "male",
+        "address": "Vietnam",
+        "phone": "1234567",
+        "creation_date": "2019-07-15 15:45:27",
+        "last_update": "2019-07-15 15:45:27"
+    }
+}</code></pre>
+<h3>HTTP Request</h3>
+<p><code>POST api/v1/profile</code></p>
+<h4>Body Parameters</h4>
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Status</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>first_name</td>
+<td>string</td>
+<td>required</td>
+<td>The first name of user.</td>
+</tr>
+<tr>
+<td>last_name</td>
+<td>string</td>
+<td>required</td>
+<td>The last name of user.</td>
+</tr>
+<tr>
+<td>gender</td>
+<td>string</td>
+<td>required</td>
+<td>The gender of user.</td>
+</tr>
+<tr>
+<td>address</td>
+<td>string</td>
+<td>required</td>
+<td>The address of user.</td>
+</tr>
+<tr>
+<td>phone</td>
+<td>string</td>
+<td>required</td>
+<td>The phone of user.</td>
+</tr>
+</tbody>
+</table>
+<!-- END_718ca1cf95e5e36ed6d871a10bf16ecd -->
+      </div>
+      <div class="dark-box">
+                        <div class="lang-selector">
+                                    <a href="#" data-language-name="bash">bash</a>
+                                    <a href="#" data-language-name="javascript">javascript</a>
+                              </div>
+                </div>
+    </div>
+  </body>
+</html>

@@ -10,6 +10,13 @@ use App\Services\Signup\SignupRequestService;
 use App\Services\User\UserServiceInterface;
 use Carbon\Carbon;
 
+/**
+ * @group User authentication
+ *
+ * Class AuthController available for user signup, login and verify request
+ *
+ * @package App\Http\Controllers\Api
+ */
 class AuthController extends ApiController
 {
     /**
@@ -42,6 +49,19 @@ class AuthController extends ApiController
     }
 
     /**
+     * User login
+     *
+     * @bodyParam email string required The email of user registered.
+     * @bodyParam password string required The password of user.
+     *
+     * @response {
+     *    "data": {
+     *      "access_token": "uO3Qa_G76J6ARt1zUjXVxquyZ2amEp2fp3Owh5b3lWumGiT6qk",
+     *      "token_type": "Bearer",
+     *      "expires_at": "2020-07-15 17:09:43"
+     *   }
+     * }
+     *
      * @param LoginRequest $request
      * @return \Illuminate\Http\JsonResponse
      */
@@ -61,6 +81,24 @@ class AuthController extends ApiController
     }
 
     /**
+     * User signup
+     *
+     * @authenticated Bearer {access_token}
+     *
+     * @bodyParam email string required The email of user.
+     * @bodyParam password string required The password of user.
+     * @bodyParam password_confirmation string required The password confirmation.
+     *
+     * @response {
+     *  "data": {
+     *      "email": "jacky@gmail.com",
+     *      "verified": "0",
+     *      "verification_token": "5ZIUdiY1tDizRaTARKV0V3lJaH3biTimqdYYWO8j",
+     *      "last_update": "2019-07-15 15:42:18",
+     *      "creation_date": "2019-07-15 15:42:18",
+     *      "id": 1
+     *  }
+     * }
      * @param SignupRequest $request
      * @return \Illuminate\Http\JsonResponse
      */
@@ -70,6 +108,18 @@ class AuthController extends ApiController
     }
 
     /**
+     * Verify user account
+     *
+     * @response {
+     *   "data": {
+     *      "email": "jacky+11@gmail.com",
+     *      "verified": "1",
+     *      "verification_token": null",
+     *      "last_update": "2019-07-15 15:42:18",
+     *      "creation_date": "2019-07-15 15:42:18",
+     *      "id": 21
+     *  }
+     * }
      * @param $token
      * @return \Illuminate\Http\JsonResponse
      */

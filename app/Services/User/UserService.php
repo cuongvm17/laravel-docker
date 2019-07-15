@@ -34,6 +34,6 @@ class UserService implements UserServiceInterface
         $data['verified'] = User::VERIFIED_USER;
         $data['verification_token'] = null;
 
-        return $this->userRepository->update($user->id, $data);
+        return $this->userRepository->doUpdate($user->id, $data);
     }
 }

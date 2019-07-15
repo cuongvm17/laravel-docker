@@ -53,7 +53,9 @@ class UserRepository extends AbstractRepository implements UserRepositoryInterfa
      */
     public function findVerifiedToken($token)
     {
-        return $this->getModel()->where('verification_token', $token)->firstOrFail();
+        $user = User::where('verification_token', '=', $token)->first();
+
+        return $user;
     }
 
     /**
@@ -61,8 +63,8 @@ class UserRepository extends AbstractRepository implements UserRepositoryInterfa
      * @param array $data
      * @return bool|mixed|void
      */
-    public function update($id,array $data)
+    public function doUpdate($id,array $data)
     {
-        $this->update($id, $data);
+        return $this->update($id, $data);
     }
 }

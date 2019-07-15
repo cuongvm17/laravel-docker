@@ -17,5 +17,5 @@ interface UserRepositoryInterface extends BaseRepositoryInterface
      * @param array $data
      * @return mixed
      */
-    public function update($id, array $data);
+    public function doUpdate($id, array $data);
 }
