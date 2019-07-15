@@ -18,7 +18,7 @@ class LoginService implements LoginServiceInterface
             return false;
         }
         $user = $request->user();
-        $tokenResult = $user->createToken('client_personal');
+        $tokenResult = $user->createToken(config('passport.client_grant_name'));
 
         return $tokenResult;
     }

@@ -64,10 +64,6 @@
     > docker-compose exec app php artisan queue:listen
     
 ### Laravel passport
-    Create new oauth2 client credentials, this client use for client.credentials middleware:
-    > docker-compose exec app php artisan passport:client --client
-    set name is: client_credentials
-    
     Create new oauth2 client password, this client use for createToken:
     > docker-compose exec app php artisan passport:client --personal
     set name is: client_personal

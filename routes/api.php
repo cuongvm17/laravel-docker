@@ -3,8 +3,9 @@
 Route::group(['prefix' => 'v1'], function () {
     Route::post('login', 'AuthController@login');
     Route::post('signup', 'AuthController@signup');
-    Route::post('verify', 'AuthController@verify');
+    Route::get('verify/{token}', 'AuthController@verify');
 
-    Route::resource('user', 'UserController', ['only' => ['index', 'show']]);
-    Route::resource('profile', 'ProfileController', ['only' => ['index', 'store', 'show']]);
+    Route::resource('profile', 'ProfileController', ['only' => ['index', 'store']]);
+
+    Route::resource('users', 'UserResourceController', ['only' => ['index', 'show']]);
 });

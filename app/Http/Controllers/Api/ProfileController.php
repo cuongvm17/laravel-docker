@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Api;
 use App\Http\Controllers\ApiController;
 use App\Http\Requests\StoreProfileRequest;
 use App\Repositories\ProfileRepository\ProfileRepositoryInterface;
+use Illuminate\Http\Request;
 
 class ProfileController extends ApiController
 {
@@ -19,16 +20,17 @@ class ProfileController extends ApiController
      */
     public function __construct(ProfileRepositoryInterface $profileRepository)
     {
-        parent::__construct();
+        $this->middleware('auth:api');
         $this->profileRepository = $profileRepository;
     }
 
     /**
+     * @param Request $request
      * @return \Illuminate\Http\JsonResponse
      */
-    public function index()
+    public function index(Request $request)
     {
-        return $this->showAll($this->profileRepository->getList());
+        return $this->showOne($request->user()->profile);
     }
 
     /**
@@ -42,14 +44,5 @@ class ProfileController extends ApiController
         }
 
         return $this->showOne($profile);
-    }
-
-    /**
-     * @param $id
-     * @return \Illuminate\Http\JsonResponse
-     */
-    public function show($id)
-    {
-        return $this->showOne($this->profileRepository->getById($id));
     }
 }

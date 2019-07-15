@@ -5,7 +5,7 @@ namespace App\Http\Controllers\Api;
 use App\Http\Controllers\ApiController;
 use App\Repositories\UserRepository\UserRepositoryInterface;
 
-class UserController extends ApiController
+class UserResourceController extends ApiController
 {
     /**
      * @var UserRepositoryInterface
@@ -18,8 +18,7 @@ class UserController extends ApiController
      */
     public function __construct(UserRepositoryInterface $userRepository)
     {
-        parent::__construct();
-
+        $this->middleware('user.resource');
         $this->userRepository = $userRepository;
     }
 

@@ -2,19 +2,16 @@
 
 namespace App\Http\Controllers\Api;
 
-use App\Http\Controllers\Controller;
+use App\Http\Controllers\ApiController;
 use App\Http\Requests\LoginRequest;
 use App\Http\Requests\SignupRequest;
 use App\Services\Login\LoginServiceInterface;
 use App\Services\Signup\SignupRequestService;
 use App\Services\User\UserServiceInterface;
-use App\Traits\ApiResponser;
 use Carbon\Carbon;
 
-class AuthController extends Controller
+class AuthController extends ApiController
 {
-    use ApiResponser;
-
     /**
      * @var SignupRequestService
      */
@@ -39,7 +36,6 @@ class AuthController extends Controller
     public function __construct(SignupRequestService $signupRequestService, LoginServiceInterface $loginService, UserServiceInterface $userService)
     {
         $this->middleware('client.credentials')->only(['signup']);
-
         $this->signupRequestService = $signupRequestService;
         $this->loginService = $loginService;
         $this->userService = $userService;
