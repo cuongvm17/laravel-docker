@@ -6,7 +6,7 @@
 5. [Test](#test)
 
 <a name="docker"/>
-## Setup laravel environment with docker 
+Setup laravel environment with docker 
 - Laravel version 5.8
 - Services include: Nginx, mariaDB:lastest, PHP:7.2
 
@@ -66,12 +66,12 @@
     > docker-compose exec app cat .env
 
 <a name="worker"/>
-## Run laravel Worker
+# Run laravel Worker
     Open new terminal and run this command:
     > docker-compose exec app php artisan queue:listen
 
 <a name="passport"/>
-## Laravel passport
+#Laravel passport
     Create new oauth2 client password, this client use for createToken:
     > docker-compose exec app php artisan passport:client --personal
     set name is: client_personal
