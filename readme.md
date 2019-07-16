@@ -1,12 +1,11 @@
-## Table of contents
-1. [Setup laravel with docker](#docker)  
-2. [Laravel worker](#worker)
-3. [Laravel passport](#passport)  
-4. [Generate api docs](#document)
-5. [Test](#test)
+### Table of contents
+1. Setup laravel with docker  
+2. Laravel worker
+3. Laravel passport  
+4. Generate api docs
+5. Test
 
-<a name="docker"/>
-Setup laravel environment with docker 
+### Setup laravel environment with docker 
 - Laravel version 5.8
 - Services include: Nginx, mariaDB:lastest, PHP:7.2
 
@@ -65,27 +64,23 @@ Setup laravel environment with docker
     run: 
     > docker-compose exec app cat .env
 
-<a name="worker"/>
-# Run laravel Worker
+### Run laravel Worker
     Open new terminal and run this command:
     > docker-compose exec app php artisan queue:listen
 
-<a name="passport"/>
-#Laravel passport
+### Laravel passport
     Create new oauth2 client password, this client use for createToken:
     > docker-compose exec app php artisan passport:client --personal
     set name is: client_personal
 
-<a name="document"/>
-## Generate api document
+### Generate api document
     Use laravel-apidoc-generator package.
     > docker-compose exec app php artisan config:cache                                                                          ✔  2164  01:06:38
     > docker-compose exec app php artisan apidoc:generate
     
     Access to link: http://localhost/docs to view api docs
 
-<a name="test"/>
-## Testing
+### Testing
 Using document to make sure APIs url correctly:
 1. Get client_credentials access token 
 2. Using access token in previous step (step 1) to signup account
