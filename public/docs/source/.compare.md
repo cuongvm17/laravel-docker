@@ -42,6 +42,12 @@ Body: {
 
 Allow client can get list or specific account information.
 
+Authenticate:
+
+headers x-api-key: {key}
+
+Bearer: {access_token}
+
 Class UserResourceController
 <!-- START_1aff981da377ba9a1bbc56ff8efaec0d -->
 ## Get list accounts
@@ -92,22 +98,6 @@ fetch(url, {
             "verification_token": "lrRQnIG1f8HEPzwtoVmBtGRi3sajHQZQimxv4BJp",
             "creation_date": "2019-07-14 16:04:47",
             "last_update": "2019-07-14 16:04:47"
-        },
-        {
-            "id": 21,
-            "email": "jacky+11@gmail.com",
-            "verified": "0",
-            "verification_token": "5ZIUdiY1tDizRaTARKV0V3lJaH3biTimqdYYWO8j",
-            "creation_date": "2019-07-15 15:42:18",
-            "last_update": "2019-07-15 15:42:18"
-        },
-        {
-            "id": 22,
-            "email": "jacky+22@gmail.com",
-            "verified": "1",
-            "verification_token": null,
-            "creation_date": "2019-07-15 17:20:48",
-            "last_update": "2019-07-15 17:33:09"
         }
     ]
 }
@@ -174,7 +164,7 @@ Class AuthController available for user signup, login and verify request
 curl -X POST "/api/v1/login" \
     -H "Authorization: Bearer {token}" \
     -H "Content-Type: application/json" \
-    -d '{"email":"eum","password":"quibusdam"}'
+    -d '{"email":"dolorem","password":"consectetur"}'
 
 ```
 
@@ -188,8 +178,8 @@ let headers = {
 }
 
 let body = {
-    "email": "eum",
-    "password": "quibusdam"
+    "email": "dolorem",
+    "password": "consectetur"
 }
 
 fetch(url, {
@@ -279,7 +269,7 @@ fetch(url, {
 curl -X POST "/api/v1/signup" \
     -H "Authorization: Bearer {token}" \
     -H "Content-Type: application/json" \
-    -d '{"email":"sint","password":"delectus","password_confirmation":"voluptate"}'
+    -d '{"email":"sint","password":"quia","password_confirmation":"voluptatem"}'
 
 ```
 
@@ -294,8 +284,8 @@ let headers = {
 
 let body = {
     "email": "sint",
-    "password": "delectus",
-    "password_confirmation": "voluptate"
+    "password": "quia",
+    "password_confirmation": "voluptatem"
 }
 
 fetch(url, {
@@ -442,7 +432,7 @@ fetch(url, {
 curl -X POST "/api/v1/profile" \
     -H "Authorization: Bearer {token}" \
     -H "Content-Type: application/json" \
-    -d '{"first_name":"optio","last_name":"perferendis","gender":"rerum","address":"facilis","phone":"iste"}'
+    -d '{"first_name":"nisi","last_name":"neque","gender":"eum","address":"asperiores","phone":"eos"}'
 
 ```
 
@@ -456,11 +446,11 @@ let headers = {
 }
 
 let body = {
-    "first_name": "optio",
-    "last_name": "perferendis",
-    "gender": "rerum",
-    "address": "facilis",
-    "phone": "iste"
+    "first_name": "nisi",
+    "last_name": "neque",
+    "gender": "eum",
+    "address": "asperiores",
+    "phone": "eos"
 }
 
 fetch(url, {

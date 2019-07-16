@@ -10,6 +10,12 @@ use App\Repositories\UserRepository\UserRepositoryInterface;
  *
  * Allow client can get list or specific account information.
  *
+ * Authenticate:
+ *
+ * headers x-api-key: {key}
+ *
+ * Bearer: {access_token}
+ *
  * Class UserResourceController
  * @package App\Http\Controllers\Api
  */
@@ -27,13 +33,14 @@ class UserResourceController extends ApiController
     public function __construct(UserRepositoryInterface $userRepository)
     {
         $this->middleware('user.resource');
+        $this->middleware('client.credentials');
         $this->userRepository = $userRepository;
     }
 
     /**
      * Get list accounts
      *
-     * @authenticated headers x-api-key: {key}
+     * @authenticated
      *
      * @response {
      *  "data": [
@@ -52,22 +59,6 @@ class UserResourceController extends ApiController
      *   "verification_token": "lrRQnIG1f8HEPzwtoVmBtGRi3sajHQZQimxv4BJp",
      *   "creation_date": "2019-07-14 16:04:47",
      *   "last_update": "2019-07-14 16:04:47"
-     *   },
-     *   {
-     *   "id": 21,
-     *   "email": "jacky+11@gmail.com",
-     *   "verified": "0",
-     *   "verification_token": "5ZIUdiY1tDizRaTARKV0V3lJaH3biTimqdYYWO8j",
-     *   "creation_date": "2019-07-15 15:42:18",
-     *   "last_update": "2019-07-15 15:42:18"
-     *   },
-     *   {
-     *   "id": 22,
-     *   "email": "jacky+22@gmail.com",
-     *   "verified": "1",
-     *   "verification_token": null,
-     *   "creation_date": "2019-07-15 17:20:48",
-     *   "last_update": "2019-07-15 17:33:09"
      *   }
      * ]
      * }
@@ -82,7 +73,7 @@ class UserResourceController extends ApiController
     /**
      * Get specific user
      *
-     * @authenticated headers x-api-key: {key}
+     * @authenticated
      *
      * @respone {
      *  "data": {

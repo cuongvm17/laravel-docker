@@ -69,7 +69,8 @@ class AuthController extends ApiController
      */
     public function login(LoginRequest $request)
     {
-        if (!$token = $this->loginService->__invoke($request)) {
+        $loginService = $this->loginService;
+        if (!$token = $loginService($request)) {
             return $this->showMessage('Login failed!');
         }
 
@@ -106,7 +107,9 @@ class AuthController extends ApiController
      */
     public function signup(SignupRequest $request)
     {
-        return $this->showOne($this->signupRequestService->__invoke($request));
+        $signupService = $this->signupRequestService;
+
+        return $this->showOne($signupService($request));
     }
 
     /**
@@ -127,7 +130,8 @@ class AuthController extends ApiController
      */
     public function verify($token)
     {
-        if (!$user = $this->userService->__invoke($token)) {
+        $userService = $this->userService;
+        if (!$user = $userService($token)) {
             return $this->showMessage('Invalid verify token. User not found!');
         }
 

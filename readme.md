@@ -1,9 +1,11 @@
 ### Table of contents
-1. Setup laravel with docker  
-2. Laravel worker
-3. Laravel passport  
-4. Generate api docs
-5. Test
+1. [Setup laravel with docker](#docker)  
+2. [Laravel worker](#worker)
+3. [Laravel passport](#passport)
+4. [Generate api docs](#document)
+5. [Test](#test)
+
+<a name="docker"></a>
 
 ### Setup laravel environment with docker 
 - Laravel version 5.8
@@ -64,28 +66,64 @@
     run: 
     > docker-compose exec app cat .env
 
-### Run laravel Worker
-    Open new terminal and run this command:
+<a name="worker"></a>
+
+###  Laravel Worker
+    Open new terminal and run this command to start laravel worker:
     > docker-compose exec app php artisan queue:listen
 
+<a name="passport"></a>
+
 ### Laravel passport
+    This project used laravel passport (oauth2) to authorization.
     Create new oauth2 client password, this client use for createToken:
     > docker-compose exec app php artisan passport:client --personal
-    set name is: client_personal
+    
+    set name is: client_personal and add this name to PASSPORT_CLIENT_PERSONAL_NAME in .env file
+    
+
+<a name="document"></a>
 
 ### Generate api document
+    You can access to link: http://localhost/docs to view api docs.
     Use laravel-apidoc-generator package.
     > docker-compose exec app php artisan config:cache                                                                          ✔  2164  01:06:38
     > docker-compose exec app php artisan apidoc:generate
-    
-    Access to link: http://localhost/docs to view api docs
+
+<a name="test"></a>
 
 ### Testing
 Using document to make sure APIs url correctly:
-1. Get client_credentials access token 
-2. Using access token in previous step (step 1) to signup account
-3. Now you can use email and password that you registered to login and get user access token
-4. Using user login access token (in step 3) to access User profile (follow api docs)
-5. Access APIs resource users, you need push x-api-token that config in .env file in headers of request 
+####1. Get client_credentials access token:
+    POST: http://localhost/oauth/token
+    body: {
+        'grant_type': 'client_credentials',
+        'client_id': 'id',
+        'client_secret': 'screte'
+    }
+    
+    response: client_credentials_access_token
+####2. Using access token in previous step (step 1) to signup account:
+    POST: http://localhost/api/v1/signup
+    bodyParams: required params in api docs
+    Header: Bearer {client_credentials_access_token}
+    
+    response: user account info
+    
+####3. Now you can use email and password that you registered to login and get user access token:
+    POST: http://localhost/api/v1/login
+    bodyParams: required follow api docs
+    
+    response: access_token
+####4. Using user login access token (in step 3) to upload User profile (follow api docs):
+    POST: http://localhost/api/v1/profile
+    bodyParams: required follow api docs
+    Header: Bearer {access_token}
+    
+    response: user profile info
+####5. Access APIs resource users, you need push x-api-token and use client credentials access token in headers of request:
+    GET: http://localhost/api/v1/users
+    Header: Bearer {client_credentials_access_token}
+            X-API-KEY: {key config in .env}
 
 
