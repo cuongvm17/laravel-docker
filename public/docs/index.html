@@ -165,7 +165,7 @@ fetch(url, {
 <pre><code class="language-bash">curl -X POST "/api/v1/login" \
     -H "Authorization: Bearer {token}" \
     -H "Content-Type: application/json" \
-    -d '{"email":"quis","password":"consequatur"}'
+    -d '{"email":"eum","password":"quibusdam"}'
 </code></pre>
 <pre><code class="language-javascript">const url = new URL("/api/v1/login");
 
@@ -176,8 +176,8 @@ let headers = {
 }
 
 let body = {
-    "email": "quis",
-    "password": "consequatur"
+    "email": "eum",
+    "password": "quibusdam"
 }
 
 fetch(url, {
@@ -225,6 +225,37 @@ fetch(url, {
 </tbody>
 </table>
 <!-- END_8c0e48cd8efa861b308fc45872ff0837 -->
+<!-- START_3ab4d7754472397e018957fa8110ac8c -->
+<h2>User logout</h2>
+<p><br><small style="padding: 1px 9px 2px;font-weight: bold;white-space: nowrap;color: #ffffff;-webkit-border-radius: 9px;-moz-border-radius: 9px;border-radius: 9px;background-color: #3a87ad;">Requires authentication</small></p>
+<blockquote>
+<p>Example request:</p>
+</blockquote>
+<pre><code class="language-bash">curl -X GET -G "/api/v1/logout" \
+    -H "Authorization: Bearer {token}"</code></pre>
+<pre><code class="language-javascript">const url = new URL("/api/v1/logout");
+
+let headers = {
+    "Authorization": "Bearer {token}",
+    "Accept": "application/json",
+    "Content-Type": "application/json",
+}
+
+fetch(url, {
+    method: "GET",
+    headers: headers,
+})
+    .then(response =&gt; response.json())
+    .then(json =&gt; console.log(json));</code></pre>
+<blockquote>
+<p>Example response (200):</p>
+</blockquote>
+<pre><code class="language-json">{
+    "data": "User success response!"
+}</code></pre>
+<h3>HTTP Request</h3>
+<p><code>GET api/v1/logout</code></p>
+<!-- END_3ab4d7754472397e018957fa8110ac8c -->
 <!-- START_4cf43ae7106797d008aa14ddcc36599a -->
 <h2>User signup</h2>
 <p><br><small style="padding: 1px 9px 2px;font-weight: bold;white-space: nowrap;color: #ffffff;-webkit-border-radius: 9px;-moz-border-radius: 9px;border-radius: 9px;background-color: #3a87ad;">Requires authentication</small></p>
@@ -234,7 +265,7 @@ fetch(url, {
 <pre><code class="language-bash">curl -X POST "/api/v1/signup" \
     -H "Authorization: Bearer {token}" \
     -H "Content-Type: application/json" \
-    -d '{"email":"suscipit","password":"rem","password_confirmation":"illo"}'
+    -d '{"email":"sint","password":"delectus","password_confirmation":"voluptate"}'
 </code></pre>
 <pre><code class="language-javascript">const url = new URL("/api/v1/signup");
 
@@ -245,9 +276,9 @@ let headers = {
 }
 
 let body = {
-    "email": "suscipit",
-    "password": "rem",
-    "password_confirmation": "illo"
+    "email": "sint",
+    "password": "delectus",
+    "password_confirmation": "voluptate"
 }
 
 fetch(url, {
@@ -384,7 +415,7 @@ fetch(url, {
 <pre><code class="language-bash">curl -X POST "/api/v1/profile" \
     -H "Authorization: Bearer {token}" \
     -H "Content-Type: application/json" \
-    -d '{"first_name":"omnis","last_name":"cumque","gender":"molestiae","address":"aliquam","phone":"officia"}'
+    -d '{"first_name":"optio","last_name":"perferendis","gender":"rerum","address":"facilis","phone":"iste"}'
 </code></pre>
 <pre><code class="language-javascript">const url = new URL("/api/v1/profile");
 
@@ -395,11 +426,11 @@ let headers = {
 }
 
 let body = {
-    "first_name": "omnis",
-    "last_name": "cumque",
-    "gender": "molestiae",
-    "address": "aliquam",
-    "phone": "officia"
+    "first_name": "optio",
+    "last_name": "perferendis",
+    "gender": "rerum",
+    "address": "facilis",
+    "phone": "iste"
 }
 
 fetch(url, {

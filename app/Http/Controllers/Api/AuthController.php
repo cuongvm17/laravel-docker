@@ -9,6 +9,7 @@ use App\Services\Login\LoginServiceInterface;
 use App\Services\Signup\SignupRequestService;
 use App\Services\User\UserServiceInterface;
 use Carbon\Carbon;
+use Illuminate\Http\Request;
 
 /**
  * @group User authentication
@@ -43,6 +44,7 @@ class AuthController extends ApiController
     public function __construct(SignupRequestService $signupRequestService, LoginServiceInterface $loginService, UserServiceInterface $userService)
     {
         $this->middleware('client.credentials')->only(['signup']);
+        $this->middleware('auth:api')->only(['logout']);
         $this->signupRequestService = $signupRequestService;
         $this->loginService = $loginService;
         $this->userService = $userService;
@@ -126,9 +128,28 @@ class AuthController extends ApiController
     public function verify($token)
     {
         if (!$user = $this->userService->__invoke($token)) {
-            return $this->showMessage('Not found user has this verify token!');
+            return $this->showMessage('Invalid verify token. User not found!');
         }
 
         return $this->showOne($user);
+    }
+
+    /**
+     * User logout
+     *
+     * @authenticated Bearer {access_token}
+     *
+     * @response {
+     *  "data": "User success response!"
+     * }
+     *
+     * @param Request $request
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function logout(Request $request)
+    {
+        $request->user()->token()->revoke();
+
+        return $this->showMessage('User success logout!');
     }
 }

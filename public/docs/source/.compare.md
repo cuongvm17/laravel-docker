@@ -174,7 +174,7 @@ Class AuthController available for user signup, login and verify request
 curl -X POST "/api/v1/login" \
     -H "Authorization: Bearer {token}" \
     -H "Content-Type: application/json" \
-    -d '{"email":"quis","password":"consequatur"}'
+    -d '{"email":"eum","password":"quibusdam"}'
 
 ```
 
@@ -188,8 +188,8 @@ let headers = {
 }
 
 let body = {
-    "email": "quis",
-    "password": "consequatur"
+    "email": "eum",
+    "password": "quibusdam"
 }
 
 fetch(url, {
@@ -226,6 +226,49 @@ Parameter | Type | Status | Description
 
 <!-- END_8c0e48cd8efa861b308fc45872ff0837 -->
 
+<!-- START_3ab4d7754472397e018957fa8110ac8c -->
+## User logout
+
+<br><small style="padding: 1px 9px 2px;font-weight: bold;white-space: nowrap;color: #ffffff;-webkit-border-radius: 9px;-moz-border-radius: 9px;border-radius: 9px;background-color: #3a87ad;">Requires authentication</small>
+> Example request:
+
+```bash
+curl -X GET -G "/api/v1/logout" \
+    -H "Authorization: Bearer {token}"
+```
+
+```javascript
+const url = new URL("/api/v1/logout");
+
+let headers = {
+    "Authorization": "Bearer {token}",
+    "Accept": "application/json",
+    "Content-Type": "application/json",
+}
+
+fetch(url, {
+    method: "GET",
+    headers: headers,
+})
+    .then(response => response.json())
+    .then(json => console.log(json));
+```
+
+
+> Example response (200):
+
+```json
+{
+    "data": "User success response!"
+}
+```
+
+### HTTP Request
+`GET api/v1/logout`
+
+
+<!-- END_3ab4d7754472397e018957fa8110ac8c -->
+
 <!-- START_4cf43ae7106797d008aa14ddcc36599a -->
 ## User signup
 
@@ -236,7 +279,7 @@ Parameter | Type | Status | Description
 curl -X POST "/api/v1/signup" \
     -H "Authorization: Bearer {token}" \
     -H "Content-Type: application/json" \
-    -d '{"email":"suscipit","password":"rem","password_confirmation":"illo"}'
+    -d '{"email":"sint","password":"delectus","password_confirmation":"voluptate"}'
 
 ```
 
@@ -250,9 +293,9 @@ let headers = {
 }
 
 let body = {
-    "email": "suscipit",
-    "password": "rem",
-    "password_confirmation": "illo"
+    "email": "sint",
+    "password": "delectus",
+    "password_confirmation": "voluptate"
 }
 
 fetch(url, {
@@ -399,7 +442,7 @@ fetch(url, {
 curl -X POST "/api/v1/profile" \
     -H "Authorization: Bearer {token}" \
     -H "Content-Type: application/json" \
-    -d '{"first_name":"omnis","last_name":"cumque","gender":"molestiae","address":"aliquam","phone":"officia"}'
+    -d '{"first_name":"optio","last_name":"perferendis","gender":"rerum","address":"facilis","phone":"iste"}'
 
 ```
 
@@ -413,11 +456,11 @@ let headers = {
 }
 
 let body = {
-    "first_name": "omnis",
-    "last_name": "cumque",
-    "gender": "molestiae",
-    "address": "aliquam",
-    "phone": "officia"
+    "first_name": "optio",
+    "last_name": "perferendis",
+    "gender": "rerum",
+    "address": "facilis",
+    "phone": "iste"
 }
 
 fetch(url, {
