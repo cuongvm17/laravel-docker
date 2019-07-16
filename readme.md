@@ -95,7 +95,7 @@
 ### Testing
 Using document to make sure APIs url correctly:
 
-####1. Get client_credentials access token:
+#### 1. Get client_credentials access token:
     POST: http://localhost/oauth/token
     body: {
         'grant_type': 'client_credentials',
@@ -105,27 +105,27 @@ Using document to make sure APIs url correctly:
     
     response: client_credentials_access_token
     
-####2. Using access token in previous step (step 1) to signup account:
+#### 2. Using access token in previous step (step 1) to signup account:
     POST: http://localhost/api/v1/signup
     bodyParams: required params in api docs
     Header: Bearer {client_credentials_access_token}
     
     response: user account info
 
-####3. Now you can use email and password that you registered to login and get user access token:
+#### 3. Now you can use email and password that you registered to login and get user access token:
     POST: http://localhost/api/v1/login
     bodyParams: required follow api docs
     
     response: access_token
     
-####4. Using user login access token (in step 3) to upload User profile (follow api docs):
+#### 4. Using user login access token (in step 3) to upload User profile (follow api docs):
     POST: http://localhost/api/v1/profile
     bodyParams: required follow api docs
     Header: Bearer {access_token}
     
     response: user profile info
     
-####5. Access APIs resource users, you need push x-api-token and use client credentials access token in headers of request:
+#### 5. Access APIs resource users, you need push x-api-token and use client credentials access token in headers of request:
     GET: http://localhost/api/v1/users
     Header: Bearer {client_credentials_access_token}
             X-API-KEY: {key config in .env}
